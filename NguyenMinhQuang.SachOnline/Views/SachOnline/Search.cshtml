@@ -1,0 +1,79 @@
+﻿@model IEnumerable<NguyenMinhQuang.SachOnline.Models.SACH>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+    <h2>KẾT QUẢ TÌM</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TenSach)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MoTa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().AnhBia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().NgayCapNhat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().SoLuongBan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().GiaBan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaCD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaNXB)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhBia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaCD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNXB)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết ", "ChiTiet", new { id = item.MaSach })
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>Không có dữ liệu sách để hiển thị.</p>
+    }
+    </div>
