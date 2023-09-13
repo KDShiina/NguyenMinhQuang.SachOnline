@@ -121,6 +121,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\FileAndMailController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NXBController.cs" />
     <Compile Include="Controllers\SachOnlineController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,6 +167,13 @@
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\NXB\ChiTietNXB.cshtml" />
+    <Content Include="Areas\Admin\Views\NXB\ChiTiet.cshtml" />
+    <Content Include="Areas\Admin\Views\NXB\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NXB\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NXB\insert.cshtml" />
+    <Content Include="Areas\Admin\Views\FileAndMail\SendMail.cshtml" />
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
@@ -227,6 +237,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="UploadFile\" />
     <Folder Include="Views\Chude\" />
   </ItemGroup>
   <ItemGroup>

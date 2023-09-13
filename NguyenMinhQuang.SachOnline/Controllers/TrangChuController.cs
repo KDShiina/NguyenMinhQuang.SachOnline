@@ -11,7 +11,8 @@ namespace BaiTap.Controllers
 {
     public class TrangChuController : Controller
     {
-        DataClasses1DataContext db = new DataClasses1DataContext(@"Data Source=MINHQUANG;Initial Catalog=SachOnline;Integrated Security=True");
+        //DataClasses1DataContext db = new DataClasses1DataContext(@"Data Source=MINHQUANG;Initial Catalog=SachOnline;Integrated Security=True");
+        DataClasses1DataContext db = new DataClasses1DataContext();
         // GET: TrangChu
         public ActionResult SachOnline()
         {

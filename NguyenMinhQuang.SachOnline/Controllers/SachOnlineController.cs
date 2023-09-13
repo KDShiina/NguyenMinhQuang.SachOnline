@@ -9,7 +9,8 @@ namespace BaiTap.Controllers
 {
     public class SachOnlineController : Controller
     {
-        DataClasses1DataContext db = new DataClasses1DataContext(@"Data Source=MINHQUANG;Initial Catalog=SachOnline;Integrated Security=True");
+        //DataClasses1DataContext db = new DataClasses1DataContext(@"Data Source=MINHQUANG;Initial Catalog=SachOnline;Integrated Security=True");
+        DataClasses1DataContext db = new DataClasses1DataContext();
 
         // GET: SachOnline
         public ActionResult Index()

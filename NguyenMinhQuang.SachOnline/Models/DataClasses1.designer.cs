@@ -64,6 +64,7 @@ namespace NguyenMinhQuang.SachOnline.Models
 		{
 			OnCreated();
 		}
+
 		
 		public DataClasses1DataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
@@ -82,8 +83,30 @@ namespace NguyenMinhQuang.SachOnline.Models
 		{
 			OnCreated();
 		}
-		
-		public System.Data.Linq.Table<ADMIN> ADMINs
+
+        public DataClasses1DataContext() :
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString, mappingSource)
+        {
+            OnCreated();
+        }
+
+
+
+		public class Mail
+		{
+			[DisplayName("Người gửi:")]
+		public string From { get; set; }
+			[DisplayName("Người nhận:")]
+		public string To { get; set; }
+			[DisplayName("Tiêu đề:")]
+		public string Subject { get; set; }
+			[DisplayName("Nội dung:")]
+		public string Notes { get; set; }
+			[DisplayName("File đính kèm:")]
+		public string Attachment { get; set; }
+		}
+
+        public System.Data.Linq.Table<ADMIN> ADMINs
 		{
 			get
 			{
