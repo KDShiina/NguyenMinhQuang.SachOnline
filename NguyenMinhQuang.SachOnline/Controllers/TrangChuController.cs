@@ -7,11 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NguyenMinhQuang.SachOnline.Models;
-namespace BaiTap.Controllers
+namespace NguyenMinhQuang.SachOnline.Controllers
 {
     public class TrangChuController : Controller
     {
-        //DataClasses1DataContext db = new DataClasses1DataContext(@"Data Source=MINHQUANG;Initial Catalog=SachOnline;Integrated Security=True");
         DataClasses1DataContext db = new DataClasses1DataContext();
         // GET: TrangChu
         public ActionResult SachOnline()

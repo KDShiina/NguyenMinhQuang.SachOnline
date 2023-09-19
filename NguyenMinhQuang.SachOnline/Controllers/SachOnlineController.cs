@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BaiTap.Controllers
+namespace NguyenMinhQuang.SachOnline.Controllers
 {
     public class SachOnlineController : Controller
     {
