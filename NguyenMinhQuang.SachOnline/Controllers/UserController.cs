@@ -20,10 +20,10 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         }
 
         [HttpPost]
-        public ActionResult DangNhap(FormCollection collection)
+        public ActionResult DangNhap(FormCollection f)
         {
-            var sTenDN = collection["TenDN"];
-            var sMatKhau = collection["MatKhau"];
+            var sTenDN = f["TenDN"];
+            var sMatKhau = f["MatKhau"];
             if (string.IsNullOrEmpty(sTenDN))
             {
                 ViewData["Err1"] = "Bạn Chưa Nhập Tên Tài Khoản ";
@@ -41,7 +41,22 @@ namespace NguyenMinhQuang.SachOnline.Controllers
                 {
                     // HIỆN THÔNG  BÁO 
                     ViewBag.ThongBao = "ĐĂNG NHẬP THÀNH CÔNG ";
+
+
                     Session["TaiKhoan"] = kh;
+                    if (f["remember"].Contains("true"))
+                    {
+                        Response.Cookies["TenDN"].Value = sTenDN;
+                        Response.Cookies["MatKhau"].Value = sMatKhau;
+                        Response.Cookies["TenDN"].Expires = DateTime.Now.AddDays(1);
+                        Response.Cookies["MatKhau"].Expires = DateTime.Now.AddDays(1);
+                    }
+                    else
+                    {
+                        Response.Cookies["TenDN"].Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies["MatKhau"].Expires = DateTime.Now.AddDays(-1);
+                    }
+
                     Session["HoTen"] = kh.HoTen;
                     return RedirectToAction("Index","SachOnline");
                 }
