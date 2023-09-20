@@ -15,7 +15,9 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         // GET: SachOnline
         public ActionResult Index()
         {
-            return View();
+            var cd = from c in db.SACHes select c;
+
+            return View(cd);
         }
 
         public ActionResult Search(string keyword)
@@ -25,8 +27,13 @@ namespace NguyenMinhQuang.SachOnline.Controllers
             return View(searchResults);
         }
 
+        public ActionResult ChiTietSach(int id)
+        {
+            var sach = from s in db.SACHes
+                       where s.MaSach == id
+                       select s;
+            return View(sach.Single());
 
-
-
+        }
     }
 }

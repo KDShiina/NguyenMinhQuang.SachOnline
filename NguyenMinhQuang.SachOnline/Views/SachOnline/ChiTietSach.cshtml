@@ -1,0 +1,78 @@
+﻿@model NguyenMinhQuang.SachOnline.Models.SACH
+
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>ChiTietSach</h2>
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <h4>SACH</h4>
+    <hr />
+    <img src="~/Images/@Model.AnhBia" alt="Ảnh bìa" style="width: 200px; display: block; margin: 0 auto;">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Raw(@Model.TenSach.ToString().Replace("\n", "<br>"))
+        </dt>
+
+        <dd>
+            @Model.TenSach.ToString().Replace("\n", "<br>")
+        </dd>
+
+        <dt>
+            @Html.Raw(@Model.MoTa.ToString().Replace("\n", "<br>"))
+        </dt>
+
+        <dd>
+            @Html.Raw(@Model.MoTa.ToString().Replace("\n", "<br>"))
+        </dd>
+
+        
+
+        <dt>
+            @Html.FormatValue(@Model.NgayCapNhat, "{0:dd/MM/yyyy}")
+        </dt>
+
+        <dd>
+            @Html.FormatValue(@Model.NgayCapNhat, "{0:dd/MM/yyyy}")
+        </dd>
+
+        <dt>
+            @Html.Raw(@Model.SoLuongBan.ToString().Replace("\n", "<br>"))
+        </dt>
+
+        <dd>
+            @Html.Raw(@Model.SoLuongBan.ToString().Replace("\n", "<br>"))
+        </dd>
+
+        <dt>
+            @Html.FormatValue(@Model.GiaBan, "{0:#,##0}")
+        </dt>
+
+        <dd>
+            @Html.FormatValue(@Model.GiaBan, "{0:#,##0}")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNXB)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

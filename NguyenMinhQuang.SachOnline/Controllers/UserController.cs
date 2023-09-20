@@ -85,7 +85,7 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         public ActionResult DangXuat()
         {
             Session.Remove("TaiKhoan");
-            return RedirectToAction("DangNhap","User");
+            return RedirectToAction("Index","SachOnline");
 
         }
     }

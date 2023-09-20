@@ -238,7 +238,8 @@
     <Content Include="Views\SachOnline\Search.cshtml" />
     <Content Include="Views\User\DangNhap.cshtml" />
     <Content Include="Views\User\chiTietKH.cshtml" />
-    <Content Include="Views\User\DangXuat.cshtml" />
+    <Content Include="Views\DangXuat.cshtml" />
+    <Content Include="Views\SachOnline\ChiTietSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
