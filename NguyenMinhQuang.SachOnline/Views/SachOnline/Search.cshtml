@@ -1,40 +1,63 @@
 ﻿@model IEnumerable<NguyenMinhQuang.SachOnline.Models.SACH>
-
+@using NguyenMinhQuang.SachOnline.Models
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
-<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 
+@{
+    List<CHUDE> cd = ViewBag.cd as List<CHUDE>;
+}
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
     <h2>KẾT QUẢ TÌM</h2>
+
+    @using (Html.BeginForm("Search", "SachOnline", FormMethod.Get))
+    {
+        <p>
+            Chủ đề:
+            @if (cd != null && cd.Any())
+            {
+                @Html.DropDownListFor(model => model.First().MaCD, new SelectList(cd, "MaCD", "TenChuDe"), "Tất cả chủ đề", new { @class = "Macd" })
+            }
+            else
+            {
+            <p>Không có dữ liệu chủ đề.</p>
+        }
+
+            Tên sản phẩm:
+            <input type="text" name="keyword" value="@ViewBag.Search" placeholder="Nhập sản phẩm cần tìm..." size="30" />
+            <button type="submit">Tìm kiếm</button>
+         </p>
+        }
 
     @if (Model != null && Model.Any())
     {
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().TenSach)
+                    @Html.DisplayNameFor(model => model.First().TenSach)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().MoTa)
+                    @Html.DisplayNameFor(model => model.First().MoTa)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().AnhBia)
+                    @Html.DisplayNameFor(model => model.First().AnhBia)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().NgayCapNhat)
+                    @Html.DisplayNameFor(model => model.First().NgayCapNhat)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().SoLuongBan)
+                    @Html.DisplayNameFor(model => model.First().SoLuongBan)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().GiaBan)
+                    @Html.DisplayNameFor(model => model.First().GiaBan)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaCD)
+                    @Html.DisplayNameFor(model => model.First().MaCD)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().MaNXB)
+                    @Html.DisplayNameFor(model => model.First().MaNXB)
                 </th>
                 <th></th>
             </tr>
@@ -46,7 +69,16 @@
                         @Html.DisplayFor(modelItem => item.TenSach)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.MoTa)
+                        @{
+                            if (item.MoTa.Length > 12)
+                            {
+                                @item.MoTa.Substring(0, 12) @Html.Raw("...")
+                            }
+                            else
+                            {
+                                @item.MoTa
+                            }
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.AnhBia)
@@ -67,7 +99,8 @@
                         @Html.DisplayFor(modelItem => item.MaNXB)
                     </td>
                     <td>
-                        @Html.ActionLink("Chi tiết ", "ChiTiet", new { id = item.MaSach })
+                        @Html.ActionLink("Chi tiết", "ChiTietSach", new { id = item.MaSach })
+                    </td>
                 </tr>
             }
         </table>
@@ -76,4 +109,4 @@
     {
         <p>Không có dữ liệu sách để hiển thị.</p>
     }
-    </div>
+</div>

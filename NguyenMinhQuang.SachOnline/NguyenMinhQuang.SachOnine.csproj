@@ -240,6 +240,8 @@
     <Content Include="Views\User\chiTietKH.cshtml" />
     <Content Include="Views\DangXuat.cshtml" />
     <Content Include="Views\SachOnline\ChiTietSach.cshtml" />
+    <Content Include="Views\SachOnline\Group.cshtml" />
+    <Content Include="Views\SachOnline\ThongKe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

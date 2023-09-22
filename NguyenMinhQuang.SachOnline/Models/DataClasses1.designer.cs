@@ -20,9 +20,20 @@ namespace NguyenMinhQuang.SachOnline.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SachOnline")]
+
+    public class ReportInfo
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Sum { get; set; }
+        public Nullable<int> Count { get; set; }
+        public Nullable<decimal> Avg { get; set; }
+        public Nullable<decimal> Max { get; set; }
+        public Nullable<decimal> Min { get; set; }
+    }
+
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SachOnline")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -91,8 +102,7 @@ namespace NguyenMinhQuang.SachOnline.Models
         }
 
 
-
-		public class Mail
+            public class Mail
 		{
 			[DisplayName("Người gửi:")]
 		public string From { get; set; }
@@ -105,6 +115,7 @@ namespace NguyenMinhQuang.SachOnline.Models
 			[DisplayName("File đính kèm:")]
 		public string Attachment { get; set; }
 		}
+
 
         public System.Data.Linq.Table<ADMIN> ADMINs
 		{
