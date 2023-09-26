@@ -5,6 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static NguyenMinhQuang.SachOnline.Models.DataClasses1DataContext;
+using PagedList;
+using PagedList.Mvc;
+using System.Linq.Dynamic;
+using System.Linq.Expressions;
 
 namespace NguyenMinhQuang.SachOnline.Controllers
 {
@@ -72,6 +76,84 @@ namespace NguyenMinhQuang.SachOnline.Controllers
                      };
             return View(kq);
         }
+
+        public ActionResult Searchphantrang(int? page, string strSearch = null)
+        {
+            ViewBag.Search = strSearch;
+            if (!string.IsNullOrEmpty(strSearch))
+            {
+                int iSize = 3;
+                int iPageNumber = (page ?? 1);
+                var kq = from s in db.SACHes where s.TenSach.Contains(strSearch) || s.MoTa.Contains(strSearch) select s;
+                return View(kq.ToPagedList(iPageNumber, iSize));
+            }
+            return View();
+        }
+
+
+
+        public ActionResult Searchphantrangtuychon(int? page, int? size, string strSearch = null)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "3", Value = "3" });
+            items.Add(new SelectListItem { Text = "5", Value = "5" });
+            items.Add(new SelectListItem { Text = "10", Value = "10" });
+            items.Add(new SelectListItem { Text = "20", Value = "20" });
+            items.Add(new SelectListItem { Text = "25", Value = "25" });
+            items.Add(new SelectListItem { Text = "50", Value = "50" });
+
+            foreach (var item in items)
+            {
+                if (item.Value == size.ToString()) item.Selected = true;
+            }
+
+            ViewBag.size = items;
+            ViewBag.currentSize = size;
+            ViewBag.Search = strSearch;
+
+            int iSize = size ?? 3;
+            int iPageNumber = page ?? 1;
+
+            var kq = from s in db.SACHes select s;
+
+            if (!string.IsNullOrEmpty(strSearch))
+            {
+                kq = kq.Where(s => s.TenSach.Contains(strSearch) || s.MoTa.Contains(strSearch));
+            }
+
+            return View(kq.ToPagedList(iPageNumber, iSize));
+        }
+
+
+
+        public ActionResult Searchphantrangsapxep(int? page, string sortProperty, string sortOrder = "", string strSearch = null)
+        {
+            ViewBag.Search = strSearch;
+            if (!string.IsNullOrEmpty(strSearch))
+            {
+                int iSize = 3;
+                int iPageNumber = page ?? 1;
+                if (sortOrder == "") ViewBag.SortOrder = "desc";
+                if (sortOrder == "desc") ViewBag.SortOrder = "";
+                if (sortOrder == "") ViewBag.SortOrder = "asc";
+                if (string.IsNullOrEmpty(sortProperty))
+                    sortProperty = "TenSach";
+                ViewBag.SortProperty = sortProperty;
+                var kq = from s in db.SACHes where s.TenSach.Contains(strSearch) || s.MoTa.Contains(strSearch) select s;
+                if (sortOrder == "desc")
+                {
+                    kq = kq.OrderBy(sortProperty + "desc");
+                }
+                else
+                {
+                    kq = kq.OrderBy(sortProperty);
+                }
+                return View(kq.ToPagedList(iPageNumber, iSize));
+
+            }
+            return View();
+        }
+
     }
 }
 

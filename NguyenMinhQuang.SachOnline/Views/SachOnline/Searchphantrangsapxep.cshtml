@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Searchphantrangsapxep";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using NguyenMinhQuang.SachOnline.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SACH>
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+    @using (Html.BeginForm("Searchphantrang", "Sachonline", FormMethod.Get))
+    {
+        <p>
+            <input type="text" name="strSearch" value="@ViewBag.Search" placeholder="Nhập sản phẩm cần tìm" size="100" />
+            <input type="submit" value="Tìm Kiếm" />
+        </p>
+    }
+    @{
+        if (Model != null)
+        {
+            <h2>kết quả tìm</h2>
+            <table class=" table">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Tên Sách", "Searchphantrangsapxep",
+                         new { sortProperty = "TenSach", sortOrder = ViewBag.SortOrder, strSearch = ViewBag.Search })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Ngày Cập Nhật", "Searchphantrangsapxep",
+                       new { sortProperty = "NgayCapNhat", sortOrder = ViewBag.SortOrder.strSearch = ViewBag.Search })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Số Lượng Bán", "Searchphantrangsapxep",
+                       new { sortProperty = "SoLuongBan", sortOrder = ViewBag.SortOrder.strSearch = ViewBag.Search })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Giá", "Searchphantrangsapxep",
+                       new { sortProperty = "GiaBan", sortOrder = ViewBag.SortOrder.strSearch = ViewBag.Search })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Giá", "Searchphantrangsapxep",
+                       new { sortProperty = "TenChuDE", sortOrder = ViewBag.SortOrder.strSearch = ViewBag.Search })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Giá", "Searchphantrangsapxep",
+                       new { sortProperty = "TenNXB", sortOrder = ViewBag.SortOrder.strSearch = ViewBag.Search })
+                    </th>
+
+                </tr>
+
+            </table>
+            <div>Trang@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</div>
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("Searchphantrangsapxep", new { page = page, sortProperty = ViewBag.SortProperty, sortOrder = ViewBag.SortOrder, strSearch = ViewBag.Search }))
+            </div>
+            <style>
+                .MenuTrang {
+                    display: inline;
+                    text-align: center;
+                }
+            </style>
+        }
+    }
+</div>
