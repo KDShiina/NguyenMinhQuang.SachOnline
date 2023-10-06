@@ -20,6 +20,7 @@ namespace NguyenMinhQuang.SachOnline.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class ReportInfo
     {
@@ -1006,166 +1007,185 @@ namespace NguyenMinhQuang.SachOnline.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaKH
-		{
-			get
-			{
-				return this._MaKH;
-			}
-			set
-			{
-				if ((this._MaKH != value))
-				{
-					this.OnMaKHChanging(value);
-					this.SendPropertyChanging();
-					this._MaKH = value;
-					this.SendPropertyChanged("MaKH");
-					this.OnMaKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string HoTen
-		{
-			get
-			{
-				return this._HoTen;
-			}
-			set
-			{
-				if ((this._HoTen != value))
-				{
-					this.OnHoTenChanging(value);
-					this.SendPropertyChanging();
-					this._HoTen = value;
-					this.SendPropertyChanged("HoTen");
-					this.OnHoTenChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaiKhoan", DbType="VarChar(15)")]
-		public string TaiKhoan
-		{
-			get
-			{
-				return this._TaiKhoan;
-			}
-			set
-			{
-				if ((this._TaiKhoan != value))
-				{
-					this.OnTaiKhoanChanging(value);
-					this.SendPropertyChanging();
-					this._TaiKhoan = value;
-					this.SendPropertyChanged("TaiKhoan");
-					this.OnTaiKhoanChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhau", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
-		public string MatKhau
-		{
-			get
-			{
-				return this._MatKhau;
-			}
-			set
-			{
-				if ((this._MatKhau != value))
-				{
-					this.OnMatKhauChanging(value);
-					this.SendPropertyChanging();
-					this._MatKhau = value;
-					this.SendPropertyChanged("MatKhau");
-					this.OnMatKhauChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(50)")]
-		public string DiaChi
-		{
-			get
-			{
-				return this._DiaChi;
-			}
-			set
-			{
-				if ((this._DiaChi != value))
-				{
-					this.OnDiaChiChanging(value);
-					this.SendPropertyChanging();
-					this._DiaChi = value;
-					this.SendPropertyChanged("DiaChi");
-					this.OnDiaChiChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DienThoai", DbType="VarChar(10)")]
-		public string DienThoai
-		{
-			get
-			{
-				return this._DienThoai;
-			}
-			set
-			{
-				if ((this._DienThoai != value))
-				{
-					this.OnDienThoaiChanging(value);
-					this.SendPropertyChanging();
-					this._DienThoai = value;
-					this.SendPropertyChanged("DienThoai");
-					this.OnDienThoaiChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> NgaySinh
-		{
-			get
-			{
-				return this._NgaySinh;
-			}
-			set
-			{
-				if ((this._NgaySinh != value))
-				{
-					this.OnNgaySinhChanging(value);
-					this.SendPropertyChanging();
-					this._NgaySinh = value;
-					this.SendPropertyChanged("NgaySinh");
-					this.OnNgaySinhChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_DONDATHANG", Storage="_DONDATHANGs", ThisKey="MaKH", OtherKey="MaKH")]
+
+        [Key]
+        [Required]
+        public int MaKH
+        {
+            get
+            {
+                return this._MaKH;
+            }
+            set
+            {
+                if ((this._MaKH != value))
+                {
+                    this.OnMaKHChanging(value);
+                    this.SendPropertyChanging();
+                    this._MaKH = value;
+                    this.SendPropertyChanged("MaKH");
+                    this.OnMaKHChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_HoTen", DbType = "NVarChar(50) NOT NULL", CanBeNull = false)]
+        [Required(ErrorMessage = "Họ Tên Không Được Để Trống.")]
+        public string HoTen
+        {
+            get
+            {
+                return this._HoTen;
+            }
+            set
+            {
+                if ((this._HoTen != value))
+                {
+                    this.OnHoTenChanging(value);
+                    this.SendPropertyChanging();
+                    this._HoTen = value;
+                    this.SendPropertyChanged("HoTen");
+                    this.OnHoTenChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TaiKhoan", DbType = "VarChar(15)")]
+        [Required(ErrorMessage = "Tài Khoản Không Được Để Trống.")]
+        [MinLength(5, ErrorMessage = "tài khoản Ít Nhất 5 ký tự.")]
+        public string TaiKhoan
+        {
+            get
+            {
+                return this._TaiKhoan;
+            }
+            set
+            {
+                if ((this._TaiKhoan != value))
+                {
+                    this.OnTaiKhoanChanging(value);
+                    this.SendPropertyChanging();
+                    this._TaiKhoan = value;
+                    this.SendPropertyChanged("TaiKhoan");
+                    this.OnTaiKhoanChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MatKhau", DbType = "VarChar(15) NOT NULL", CanBeNull = false)]
+
+
+        [Required(ErrorMessage = "mật khẩu Không Được Để Trống.")]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Mật khẩu phải từ 6 tới 15 ký tự")]
+        public string MatKhau
+        {
+            get
+            {
+                return this._MatKhau;
+            }
+            set
+            {
+                if ((this._MatKhau != value))
+                {
+                    this.OnMatKhauChanging(value);
+                    this.SendPropertyChanging();
+                    this._MatKhau = value;
+                    this.SendPropertyChanged("MatKhau");
+                    this.OnMatKhauChanged();
+                }
+            }
+        }
+        [DisplayName("Nhập lại mật khẩu ")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
+        [Compare("MatKhau", ErrorMessage = "Mật khẩu không trùng")]
+        public string MatKhauNL { get; set; }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Email", DbType = "VarChar(50)")]
+        [Required(ErrorMessage = "Email không được để trống")]
+        [EmailAddress(ErrorMessage = "Email không đúng định dạng ")]
+        public string Email
+        {
+            get
+            {
+                return this._Email;
+            }
+            set
+            {
+                if ((this._Email != value))
+                {
+                    this.OnEmailChanging(value);
+                    this.SendPropertyChanging();
+                    this._Email = value;
+                    this.SendPropertyChanged("Email");
+                    this.OnEmailChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DiaChi", DbType = "NVarChar(50)")]
+        [Required(ErrorMessage = "Địa chỉ  không được để trống")]
+        public string DiaChi
+        {
+            get
+            {
+                return this._DiaChi;
+            }
+            set
+            {
+                if ((this._DiaChi != value))
+                {
+                    this.OnDiaChiChanging(value);
+                    this.SendPropertyChanging();
+                    this._DiaChi = value;
+                    this.SendPropertyChanged("DiaChi");
+                    this.OnDiaChiChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DienThoai", DbType = "VarChar(10)")]
+        [Required(ErrorMessage = "Điện thoại  không được để trống")]
+        public string DienThoai
+        {
+            get
+            {
+                return this._DienThoai;
+            }
+            set
+            {
+                if ((this._DienThoai != value))
+                {
+                    this.OnDienThoaiChanging(value);
+                    this.SendPropertyChanging();
+                    this._DienThoai = value;
+                    this.SendPropertyChanged("DienThoai");
+                    this.OnDienThoaiChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgaySinh", DbType = "SmallDateTime")]
+        [Required(ErrorMessage = "ngày sinh  không được để trống")]
+        public System.Nullable<System.DateTime> NgaySinh
+        {
+            get
+            {
+                return this._NgaySinh;
+            }
+            set
+            {
+                if ((this._NgaySinh != value))
+                {
+                    this.OnNgaySinhChanging(value);
+                    this.SendPropertyChanging();
+                    this._NgaySinh = value;
+                    this.SendPropertyChanged("NgaySinh");
+                    this.OnNgaySinhChanged();
+                }
+            }
+        }
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_DONDATHANG", Storage="_DONDATHANGs", ThisKey="MaKH", OtherKey="MaKH")]
 		public EntitySet<DONDATHANG> DONDATHANGs
 		{
 			get

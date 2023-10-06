@@ -1,26 +1,26 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
-    ViewBag.Title = "Index";
-}
 
-@model PagedList.PagedList<NguyenMinhQuang.SachOnline.Models.SACH>
-@using NguyenMinhQuang.SachOnline.Models;
-@using PagedList.Mvc
+    ViewBag.Title = "SachTheoCD";
+}
+@model IEnumerable<NguyenMinhQuang.SachOnline.Models.SACH>
 
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-    <h2 class="text-center">SÁCH MỚI</h2>
+    <h2 class="text-center">SÁCH THEO CHỦ ĐỀ</h2>
     <hr>
     <div class="row text-center">
+
         @foreach (var sach in Model)
         {
             <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
                 <div class="thumbnail">
                     <img src="~/Images/@sach.AnhBia" alt="Thumbnail Image" class="img-responsive img-rounded imgbook" style="width: 300px; height: 350px; display: block; margin: auto;">
                     <div class="caption">
-                        <div style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">
+                        <div style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                             <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = sach.MaSach })">@sach.TenSach</a>
                         </div>
-                        @*@sach.MoTa</p>*@
+                        <!--<p>@sach.MoTa</p>-->
                         <p>Mô tả tóm tắt sản phẩm</p>
                         <p>
                             <a href="#" class="btn btn-primary" role="button">
@@ -35,19 +35,20 @@
 </div>
 
 <nav class="text-center">
-    <div class="horizontal-pages">
-        <ul class="pagination">
-            @if (Model.PageCount > 1)
-            {
-                for (var i = 1; i <= Model.PageCount; i++)
-                {
-                    <li class="@(i == Model.PageNumber ? "active" : "")">
-                        <a href="@Url.Action("Searchphantrang", new { page = i, strSearch = ViewBag.Search })">@i</a>
-                    </li>
-                }
-            }
-        </ul>
-    </div>
+    <!-- Add class .pagination-lg for larger blocks or .pagination-sm for smaller blocks-->
+    <ul class="pagination">
+        <li> <a href="#" aria-label="Previous"> <span ariahidden="true">&laquo;</span> </a> </li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li class="disabled"><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 
 @section SliderPartial{

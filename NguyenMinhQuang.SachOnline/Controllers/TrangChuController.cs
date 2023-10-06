@@ -43,8 +43,14 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         }
         public ActionResult SachBanNhieuPartial()
         {
-            return PartialView();
+            var sachBanNhieu = db.SACHes
+                                .OrderByDescending(s => s.SoLuongBan)
+                                .Take(6)
+                                .ToList();
+
+            return PartialView(sachBanNhieu);
         }
+
 
 
     }

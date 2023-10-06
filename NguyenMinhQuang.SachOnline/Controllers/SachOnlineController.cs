@@ -9,6 +9,7 @@ using PagedList;
 using PagedList.Mvc;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
+using System.Web.UI;
 
 namespace NguyenMinhQuang.SachOnline.Controllers
 {
@@ -18,11 +19,14 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         DataClasses1DataContext db = new DataClasses1DataContext();
 
         // GET: SachOnline
-        public ActionResult Index()
+        public ActionResult Index(int page =1)
         {
             var cd = from c in db.SACHes select c;
+            
+            int pageSize = 6;
+            var sachPagedList = cd.ToPagedList(page, pageSize);
 
-            return View(cd);
+            return View(sachPagedList);
         }
 
         public ActionResult Search(string keyword = null, int maCD = 0)
@@ -154,6 +158,19 @@ namespace NguyenMinhQuang.SachOnline.Controllers
             return View();
         }
 
+        public ActionResult SachTheoCD(int maCD)
+        {
+            var sachLienQuan = from s in db.SACHes where s.MaCD == maCD select s;
+
+            return View("SachTheoCD", sachLienQuan);
+        }
+
+        public ActionResult SachTheoNXB(int manxb)
+        {
+            var sachLienQuan = from s in db.SACHes where s.MaCD == manxb select s;
+
+            return View("SachTheoNXB", sachLienQuan);
+        }
     }
 }
 

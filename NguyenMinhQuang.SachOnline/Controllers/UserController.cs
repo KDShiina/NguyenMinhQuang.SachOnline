@@ -86,7 +86,47 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         {
             Session.Remove("TaiKhoan");
             return RedirectToAction("Index","SachOnline");
+        }
 
+        [HttpGet]
+        public ActionResult DangKy()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangKy(FormCollection f, KHACHHANG kh)
+        {
+            var sHoTen = f["HoTen"];
+            var sTaiKhoan = f["TaiKhoan"];
+            var sMatKhau = f["MatKhau"];
+            var sMatKhauNhapLai = f["MatKhauNL"];
+            var sDiaChi = f["DiaChi"];
+            var sEmail = f["Email"];
+            var sDienThoai = f["DienThoai"];
+            var dNgaySinh = string.Format("{0:MM/dd/yyyy}", f["NgaySinh"]);
+            if (db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTaiKhoan) != null)
+            {
+                ViewBag.ThongBao = "Tên đăng nhập đã tồn tại ";
+            }
+            else if (db.KHACHHANGs.SingleOrDefault(n => n.Email == sEmail) != null)
+            {
+                ViewBag.ThongBao = "email đã được sử dụng ";
+            }
+            else if (ModelState.IsValid)
+            {
+                kh.HoTen = sHoTen;
+                kh.TaiKhoan = sTaiKhoan;
+                kh.Email = sEmail;
+                kh.MatKhau = sMatKhau;
+                kh.Email = sEmail;
+                kh.DiaChi = sDiaChi;
+                kh.DienThoai = sDienThoai;
+                kh.NgaySinh = DateTime.Parse(dNgaySinh);
+                db.KHACHHANGs.InsertOnSubmit(kh);
+                db.SubmitChanges();
+                return Redirect("~/User/DangNhap");
+            }
+            return View("DangKy");
         }
     }
 }
