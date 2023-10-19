@@ -23,7 +23,7 @@
                         @*@sach.MoTa</p>*@
                         <p>Mô tả tóm tắt sản phẩm</p>
                         <p>
-                            <a href="#" class="btn btn-primary" role="button">
+                            <a href="@Url.Action("ThemGioHang","GioHang", new {ms =sach.MaSach,url=Request.Url.ToString()})" class="btn btn-primary" role="button">
                                 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart
                             </a>
                         </p>
@@ -42,7 +42,7 @@
                 for (var i = 1; i <= Model.PageCount; i++)
                 {
                     <li class="@(i == Model.PageNumber ? "active" : "")">
-                        <a href="@Url.Action("Searchphantrang", new { page = i, strSearch = ViewBag.Search })">@i</a>
+                        <a href="@Url.Action("Index", new { page = i, strSearch = ViewBag.Search })">@i</a>
                     </li>
                 }
             }
