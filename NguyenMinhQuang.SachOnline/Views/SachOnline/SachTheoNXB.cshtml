@@ -4,8 +4,9 @@
 
     ViewBag.Title = "SachTheoCD";
 }
-@model IEnumerable<NguyenMinhQuang.SachOnline.Models.SACH>
-
+@model PagedList.PagedList<NguyenMinhQuang.SachOnline.Models.SACH>
+@using NguyenMinhQuang.SachOnline.Models;
+@using PagedList.Mvc
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
     <h2 class="text-center">SÁCH THEO NHÀ XUẤT BẢN</h2>
     <hr>
@@ -35,19 +36,16 @@
 </div>
 
 <nav class="text-center">
-    <!-- Add class .pagination-lg for larger blocks or .pagination-sm for smaller blocks-->
     <ul class="pagination">
-        <li> <a href="#" aria-label="Previous"> <span ariahidden="true">&laquo;</span> </a> </li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li class="disabled"><a href="#">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
+        @if (Model.PageCount > 1)
+        {
+            for (var i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="@(i == Model.PageNumber ? "active" : "")">
+                    <a href="@Url.Action("SachTheoNXB", new { maNXB = i, strSearch = ViewBag.Search })">@i</a>
+                </li>
+            }
+        }
     </ul>
 </nav>
 

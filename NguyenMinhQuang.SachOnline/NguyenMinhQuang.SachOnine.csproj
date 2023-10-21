@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\FileAndMailController.cs" />
     <Compile Include="Areas\Admin\Controllers\NXBController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -237,6 +238,7 @@
     <Content Include="Areas\Admin\Views\FileAndMail\SendMail.cshtml" />
     <Content Include="Images\.rescache" />
     <Content Include="Images\Slider\.rescache" />
+    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
