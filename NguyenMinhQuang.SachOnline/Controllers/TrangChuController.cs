@@ -51,7 +51,10 @@ namespace NguyenMinhQuang.SachOnline.Controllers
             return PartialView(sachBanNhieu);
         }
 
-
+        public ActionResult LoginLogout()
+        {
+            return PartialView("LoginLogoutPartial");
+        }
 
     }
 

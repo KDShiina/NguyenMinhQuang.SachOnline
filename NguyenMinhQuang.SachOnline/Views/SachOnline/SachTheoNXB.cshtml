@@ -42,12 +42,13 @@
             for (var i = 1; i <= Model.PageCount; i++)
             {
                 <li class="@(i == Model.PageNumber ? "active" : "")">
-                    <a href="@Url.Action("SachTheoNXB", new { maNXB = i, strSearch = ViewBag.Search })">@i</a>
+                    <a href="@Url.Action("SachTheoNXB", new { maCD = Model[0].MaCD, pageNumber = i })">@i</a>
                 </li>
             }
         }
     </ul>
 </nav>
+
 
 @section SliderPartial{
     @Html.Action("SliderPartial", "TrangChu")

@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\FileAndMailController.cs" />
     <Compile Include="Areas\Admin\Controllers\NXBController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SachController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\SachOnlineController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
@@ -239,6 +240,8 @@
     <Content Include="Images\.rescache" />
     <Content Include="Images\Slider\.rescache" />
     <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexAdmin.cshtml" />
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
@@ -290,11 +293,12 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\Shared\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
+    <Content Include="Views\Shared\LoginLogoutPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Sach\" />
     <Folder Include="UploadFile\" />
     <Folder Include="Views\Chude\" />
   </ItemGroup>

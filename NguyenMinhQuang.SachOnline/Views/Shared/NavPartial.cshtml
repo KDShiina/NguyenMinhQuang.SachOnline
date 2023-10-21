@@ -28,43 +28,30 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li>
+                    <form class="navbar-form navbar-right" role="search" action="@Url.Action("Search", "SachOnline")" method="GET">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm" name="keyword">
+                        </div>
+                        <button type="submit" class="btn btn-default">Tìm</button>
+                    </form>
+
                     @if (Session["TaiKhoan"] != null)
                     {
                         // Hiển thị menu cho người dùng đã đăng nhập
-                        <a href="#" id="userDropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/User/chiTietKH"><span class="glyphicon glyphicon-user"></span> Thông tin cá nhân</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/User/DangXuat"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất</a></li>
-                        </ul>
-
-                        <script>
-                             var userName = "@Session["HoTen"]";
-                             document.getElementById("userDropdown").innerHTML = "Xin chào: "+ userName + '<span class="caret"></span>';
-                        </script>
+                        @Html.Action("LoginLogout", "TrangChu")
                     }
                     else
                     {
                         // Hiển thị menu cho người dùng chưa đăng nhập
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Người dùng <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng ký</a> </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="~/User/DangNhap"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
-                        </ul>
+                        @Html.Action("LoginLogout", "TrangChu")
                     }
-                <li>
+<li>
                     @Html.Action("GioHangPartial", "GioHang")
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-right" role="search" action="@Url.Action("Search", "SachOnline")" method="GET">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm" name="keyword">
-                </div>
-                <button type="submit" class="btn btn-default">Tìm</button>
-            </form>
+
 
         </div>
         <!-- /.navbar-collapse -->
