@@ -47,21 +47,6 @@ namespace NguyenMinhQuang.SachOnline.Controllers
             return PartialView(lst);
         }
 
-        [ChildActionOnly]
-        public ActionResult LoadChildMenu(int parentId)
-        {
-            List<MENU> lst = new List<MENU>();
-            lst = db.MENUs.Where(m => m.ParentId == parentId).OrderBy(m => m.OrderNumber).ToList(); ViewBag.Count = lst.Count();
-            int[] a = new int[lst.Count()];
-            for (int i = 0; i < lst.Count; i++)
-            {
-                var l = db.MENUs.Where(m => m.ParentId == lst[i].Id); a[i] = 1.Count();
-            }
-            ViewBag.lst = a;
-            return PartialView("LoadChildMenu", lst);
-
-        }
-
         public ActionResult FooterPartial()
         {
             return PartialView();
@@ -85,5 +70,19 @@ namespace NguyenMinhQuang.SachOnline.Controllers
             return PartialView("LoginLogoutPartial");
         }
 
+        [ChildActionOnly]
+        public ActionResult LoadChildMenu(int parentId)
+        {
+            List<MENU> lst = new List<MENU>();
+            lst = db.MENUs.Where(m => m.ParentId == parentId).OrderBy(m => m.OrderNumber).ToList(); ViewBag.Count = lst.Count();
+            int[] a = new int[lst.Count()];
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var l = db.MENUs.Where(m => m.ParentId == lst[i].Id); a[i] = l.Count();
+            }
+            ViewBag.lst = a;
+            return PartialView("LoadChildMenu", lst);
+
+        }
     }
 }

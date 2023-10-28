@@ -715,7 +715,6 @@
     <Content Include="Areas\Admin\Views\DonHang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DonHang\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DonHang\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHang\Edit.cshtml" />
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
