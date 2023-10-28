@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DoAn_Web" Class="SQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Comments" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="CommentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PostID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CommentTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Post_Comment" Member="Post" ThisKey="PostID" OtherKey="PostID" Type="Post" IsForeignKey="true" />
+      <Association Name="User_Comment" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Friendships" Member="Friendships">
+    <Type Name="Friendship">
+      <Column Name="FriendshipID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FriendID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Friendship" Member="User" ThisKey="FriendID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Friendship1" Member="User1" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Messages" Member="Messages">
+    <Type Name="Message">
+      <Column Name="MessageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SenderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReceiverID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="SendTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_Message" Member="User" ThisKey="ReceiverID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Message1" Member="User1" ThisKey="SenderID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Notifications" Member="Notifications">
+    <Type Name="Notification">
+      <Column Name="NotificationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsRead" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Notification" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ratings" Member="Ratings">
+    <Type Name="Rating">
+      <Column Name="RatingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PostID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RatingValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RatingTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Post_Rating" Member="Post" ThisKey="PostID" OtherKey="PostID" Type="Post" IsForeignKey="true" />
+      <Association Name="User_Rating" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Posts" Member="Posts">
+    <Type Name="Post">
+      <Column Name="PostID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PostTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImageData" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Post_Comment" Member="Comments" ThisKey="PostID" OtherKey="PostID" Type="Comment" />
+      <Association Name="Post_Rating" Member="Ratings" ThisKey="PostID" OtherKey="PostID" Type="Rating" />
+      <Association Name="Post_Report" Member="Reports" ThisKey="PostID" OtherKey="PostID" Type="Report" />
+      <Association Name="User_Post" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reports" Member="Reports">
+    <Type Name="Report">
+      <Column Name="ReportID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PostID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReporterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReportText" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ReportTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Post_Report" Member="Post" ThisKey="PostID" OtherKey="PostID" Type="Post" IsForeignKey="true" />
+      <Association Name="User_Report" Member="User" ThisKey="ReporterID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Stories" Member="Stories">
+    <Type Name="Story">
+      <Column Name="StoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StoryContent" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="StoryTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StoryImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="StoryImageURL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="User_Story" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserImages" Member="UserImages">
+    <Type Name="UserImage">
+      <Column Name="ImageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImageData" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UploadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_UserImage" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProfilePicture" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProfilePictureURL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="User_Comment" Member="Comments" ThisKey="UserID" OtherKey="UserID" Type="Comment" />
+      <Association Name="User_Friendship" Member="Friendships" ThisKey="UserID" OtherKey="FriendID" Type="Friendship" />
+      <Association Name="User_Friendship1" Member="Friendships1" ThisKey="UserID" OtherKey="UserID" Type="Friendship" />
+      <Association Name="User_Message" Member="Messages" ThisKey="UserID" OtherKey="ReceiverID" Type="Message" />
+      <Association Name="User_Message1" Member="Messages1" ThisKey="UserID" OtherKey="SenderID" Type="Message" />
+      <Association Name="User_Notification" Member="Notifications" ThisKey="UserID" OtherKey="UserID" Type="Notification" />
+      <Association Name="User_Rating" Member="Ratings" ThisKey="UserID" OtherKey="UserID" Type="Rating" />
+      <Association Name="User_Post" Member="Posts" ThisKey="UserID" OtherKey="UserID" Type="Post" />
+      <Association Name="User_Report" Member="Reports" ThisKey="UserID" OtherKey="ReporterID" Type="Report" />
+      <Association Name="User_Story" Member="Stories" ThisKey="UserID" OtherKey="UserID" Type="Story" />
+      <Association Name="User_UserImage" Member="UserImages" ThisKey="UserID" OtherKey="UserID" Type="UserImage" />
+    </Type>
+  </Table>
+</Database>
