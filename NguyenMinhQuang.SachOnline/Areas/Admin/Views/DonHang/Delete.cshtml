@@ -1,0 +1,24 @@
+﻿@model NguyenMinhQuang.SachOnline.Models.DONDATHANG
+@{
+    ViewBag.Title = "Xóa đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Xóa đơn hàng</h2>
+
+<div>
+    <h4>Bạn có chắc chắn muốn xóa đơn hàng này?</h4>
+    <dl class="dl-horizontal">
+        <dt>Mã đơn hàng:</dt>
+        <dd>@Model.MaDonHang</dd>
+        <dt>Tên khách hàng:</dt>
+        <dd>@(Model.KHACHHANG != null ? Model.KHACHHANG.HoTen : "Khách hàng không tồn tại")</dd>
+    </dl>
+
+    @using (Html.BeginForm("Delete", "DonHang", new { id = Model.MaDonHang }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-default" })
+    }
+</div>

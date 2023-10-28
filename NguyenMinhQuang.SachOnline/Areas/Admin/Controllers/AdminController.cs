@@ -10,7 +10,7 @@ namespace NguyenMinhQuang.SachOnline.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        public ActionResult IndexAdmin()
+        public ActionResult IndexMainAdmin()
         {
             return View();
         }

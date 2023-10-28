@@ -1,0 +1,38 @@
+﻿@model NguyenMinhQuang.SachOnline.Models.DonHangEditViewModel
+
+@{
+    ViewBag.Title = "Edit Order";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Edit Order</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayDat)
+        @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NgayDat)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayGiao)
+        @Html.EditorFor(model => model.NgayGiao, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NgayGiao)
+    </div>
+
+    for (int i = 0; i < Model.ChiTietDonHangs.Count; i++)
+    {
+        <div class="form-group">
+            @Html.HiddenFor(model => model.ChiTietDonHangs[i].MaChiTiet)
+
+            @Html.LabelFor(model => model.ChiTietDonHangs[i].SoLuong)
+            @Html.EditorFor(model => model.ChiTietDonHangs[i].SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ChiTietDonHangs[i].SoLuong)
+        </div>
+    }
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}

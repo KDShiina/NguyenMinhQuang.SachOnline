@@ -1,0 +1,54 @@
+﻿@model NguyenMinhQuang.SachOnline.Models.DONDATHANG
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+@{
+    decimal totalAmount = 0; // Khởi tạo biến để tính tổng tiền
+}
+
+<h2>Chi tiết đơn hàng</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Mã đơn hàng:</dt>
+        <dd>@Model.MaDonHang</dd>
+        <dt>Tên khách hàng:</dt>
+        <dd>@(Model.KHACHHANG != null ? Model.KHACHHANG.HoTen : "Khách hàng không tồn tại")</dd>
+        <dt>Ngày đặt:</dt>
+        <dd>@Model.NgayDat</dd>
+        <dt>Ngày giao:</dt>
+        <dd>@Model.NgayGiao</dd>
+    </dl>
+</div>
+<h3>Chi tiết đơn hàng:</h3>
+<table class="table">
+    <tr>
+        <th>Tên sách</th>
+        <th>Số lượng</th>
+        <th>Giá</th>
+    </tr>
+    @foreach (var item in ViewBag.OrderDetails)
+    {
+        <tr>
+            <td>@item.SACH.TenSach</td>
+            <td>@item.SoLuong</td>
+            <td>@item.DonGia</td>
+        </tr>
+        {
+            // Tính tổng tiền bằng cách cộng giá sản phẩm * số lượng
+            totalAmount += item.SoLuong * item.DonGia;
+        }
+    }
+    <tr>
+        <td><strong>Tổng tiền:</strong></td>
+        <td></td>
+        <td><strong>@totalAmount VNĐ</strong></td>
+    </tr>
+</table>
+</table>
+
+<p>
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+@model PagedList.IPagedList<NguyenMinhQuang.SachOnline.Models.DONDATHANG>
+@using PagedList
+@using PagedList.Mvc
+
+<h2>Danh sách đơn hàng</h2>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+
+<table class="table">
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>Tên khách hàng</th>
+        <th>Ngày đặt</th>
+        <th>Ngày giao</th>
+        <th>Thao tác</th> <!-- Thêm cột thao tác -->
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaDonHang</td>
+            @if (item != null && item.KHACHHANG != null)
+            {
+                <td>@item.KHACHHANG.HoTen</td>
+            }
+            else
+            {
+                <td>Thông tin không khả dụng</td>
+            }
+            <td>@item.NgayDat</td>
+            <td>@item.NgayGiao</td>
+            <td>
+                <a href="@Url.Action("Details", new { id = item.MaDonHang })">Xem chi tiết</a> |
+                <a href="@Url.Action("Edit", new { id = item.MaDonHang })">Sửa</a> |
+                <a href="@Url.Action("Delete", new { id = item.MaDonHang })">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>

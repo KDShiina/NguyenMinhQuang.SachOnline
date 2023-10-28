@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+@model IEnumerable<NguyenMinhQuang.SachOnline.Models.CHUDE>
+
+
+<h2>Danh sách chủ đề</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "insert")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Chủ Đề
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChuDe)
+            </td>
+
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.MaCD }) |
+                @Html.ActionLink("Chi tiết", "ChiTiet", new { id = item.MaCD }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaCD })
+            </td>
+        </tr>
+    }
+</table>

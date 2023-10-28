@@ -1,8 +1,9 @@
 ﻿@model NguyenMinhQuang.SachOnline.Models.NHAXUATBAN
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
+
 
 <!DOCTYPE html>
 
@@ -19,27 +20,27 @@
             <dt>
                 @Html.DisplayNameFor(model => model.TenNXB)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.TenNXB)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.DiaChi)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.DiaChi)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.DienThoai)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.DienThoai)
             </dd>
-    
+
         </dl>
     </div>
     <p>
