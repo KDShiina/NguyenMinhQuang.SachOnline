@@ -20,10 +20,10 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         DataClasses1DataContext db = new DataClasses1DataContext();
 
         // GET: SachOnline
-        public ActionResult Index(int page =1)
+        public ActionResult Index(int page = 1)
         {
             var cd = from c in db.SACHes select c;
-            
+
             int pageSize = 6;
             var sachPagedList = cd.ToPagedList(page, pageSize);
 
@@ -173,7 +173,11 @@ namespace NguyenMinhQuang.SachOnline.Controllers
 
             return View("SachTheoNXB", sachLienQuan);
         }
-
+        public ActionResult TrangTin(string metatitle)
+        {
+            var tt = (from t in db.TRANGTINs where t.MetaTitle == metatitle select t).Single();
+            return View(tt);
+        }
     }
 }
 
