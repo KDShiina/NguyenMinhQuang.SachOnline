@@ -20,7 +20,7 @@
                     <img src="~/Images/@sach.AnhBia" alt="Thumbnail Image" class="img-responsive img-rounded imgbook" style="width: 300px; height: 350px; display: block; margin: auto;">
                     <div class="caption">
                         <div style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                            <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = sach.MaSach })">@sach.TenSach</a>
+                            <a href="@Url.Action("ChiTietSach", "SachOnline", new { maCD = sach.MaSach })">@sach.TenSach</a>
                         </div>
                         <!--<p>@sach.MoTa</p>-->
                         <p>Mô tả tóm tắt sản phẩm</p>

@@ -35,12 +35,11 @@ namespace NguyenMinhQuang.SachOnline.Controllers
         public ActionResult NavPartial()
         {
             List<MENU> lst = new List<MENU>();
-            lst = db.MENUs.Where(m => m.ParentId == null).OrderBy(m => m.OrderNumber).ToList(); int[] a = new int[lst.Count()];
+            lst = db.MENUs.Where(m => m.ParentId == null).OrderBy(m => m.OrderNumber).ToList();
+            int[] a = new int[lst.Count()];
             for (int i = 0; i < lst.Count; i++)
             {
-                var l = db.MENUs.Where(m => m.ParentId
-                ==
-                lst[i].Id);
+                var l = db.MENUs.Where(m => m.ParentId == lst[i].Id);
                 a[i] = l.Count();
             }
             ViewBag.lst = a;

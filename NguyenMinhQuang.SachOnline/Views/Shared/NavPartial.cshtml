@@ -15,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">SachOnline</a>
+            <a class="navbar-brand" href="~/SachOnline/Index">SachOnline</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling (Chứa nội dung của navbar) -->
@@ -34,7 +34,14 @@
                         }
                         else
                         {
-                            <li><a href="~/@item.MenuLink">@item.MenuName</a></li>
+                            if (@item.MenuLink.Contains("://"))
+                            {
+                                <li><a href="@item.MenuLink">@item.MenuName</a>  </li>
+                            }
+                            else
+                            {
+                                <li><a href="~/@item.MenuLink">@item.MenuName</a>  </li>
+                            }
                         }
                         i++;
                     }
@@ -43,38 +50,30 @@
 
 
 
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <form class="navbar-form navbar-right" role="search" action="@Url.Action("Search", "SachOnline")" method="GET">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm" name="keyword">
-                        </div>
-                        <button type="submit" class="btn btn-default">Tìm</button>
-                    </form>
+            <form class="navbar-form navbar-right" role="search" action="@Url.Action("Search", "SachOnline")" method="GET">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm" name="keyword">
+                </div>
+                <button type="submit" class="btn btn-default">Tìm</button>
+            </form>
 
-                    @if (Session["TaiKhoan"] != null)
-                    {
-                        // Hiển thị menu cho người dùng đã đăng nhập
-                        @Html.Action("LoginLogout", "TrangChu")
-                    }
-                    else
-                    {
-                        // Hiển thị menu cho người dùng chưa đăng nhập
-                        @Html.Action("LoginLogout", "TrangChu")
-                    }
+            <ul class="nav navbar-nav navbar-right">
+                @if (Session["TaiKhoan"] != null)
+                {
+                    @Html.Action("LoginLogout", "TrangChu")
+                }
+                else
+                {
+                    @Html.Action("LoginLogout", "TrangChu")
+                }
                 <li>
                     @Html.Action("GioHangPartial", "GioHang")
                 </li>
             </ul>
-
-
-
         </div>
-        <!-- /.navbar-collapse -->
-
     </div>
-    <!-- /.container-->
 </nav>
+
 
 
 ﻿
